@@ -8,9 +8,9 @@
     Object.prototype.type = "unknown";
     
     glob.array = function(a){
-        if(a instanceof Number){
+        if(a.type == "number"){
             return new Array(a);
-        }if(a instanceof Array){
+        }if(a.type == "array"){
             return a;
         }
         return arguments;
@@ -35,7 +35,7 @@
     function forArr(func, arr){
         var ret = [];
         for(var i = 0; i < arr.length; i++){
-            ret.push(func.invoke0(i));
+            ret.push(func.invoke0(arr[i]));
         }
         return ret;
     }
@@ -92,13 +92,13 @@
     };
     
     //number.add
-    glob.Number.prototype.add = function(a){return this+a;};
+    glob.Object.prototype.add = function(a){return this+a;};
     //number.sub
-    glob.Number.prototype.sub = function(a){return this-a;};
+    glob.Object.prototype.sub = function(a){return this-a;};
     //number.mul
-    glob.Number.prototype.mul = function(a){return this*a;};
+    glob.Object.prototype.mul = function(a){return this*a;};
     //number.div
-    glob.Number.prototype.div = function(a){return this/a;};
+    glob.Object.prototype.div = function(a){return this/a;};
     
     //array.add
     glob.Array.prototype.add = function(){
@@ -115,6 +115,16 @@
             res = res.mul(this[i]);
         }
         return res;
+    };
+    
+    glob.Array.prototype.select = function(f){
+        var ret = [];
+        for(var i = 0; i < this.length; i++){
+            if(f.invoke0(this[i])){
+                ret.push(this[i]);
+            }
+        }
+        return ret;
     };
     
 })(this);
