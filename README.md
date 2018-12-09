@@ -11,4 +11,4 @@ var factorial = (x=>(a=>a).for(1,x).mul());
 ```
 
 # Embed
-You can embed this library using the following code (HTML): `<script type="text/javascript" src="https://rawgit.com/coalang-soft/js-co4/master/runtime-setup.js"></script>`
+You can embed this library using the following code (HTML): `<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/coalang-soft/js-co4@master/runtime-setup.js"></script>`
